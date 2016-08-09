@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+	<bean id="cacheManager"
+		class="org.springframework.cache.support.CompositeCacheManager">
+		<property name="cacheManagers">
+			<array>
+				<ref bean="cacheManager1" />
+				<ref bean="cacheManager2" />
+			</array>
+		</property>
+		<property name="fallbackToNoOpCache" value="false"></property>
+	</bean>
+
+	<bean id="ehcacheGeneric"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache-generic.xml"/>
+	</bean>
+	
+	<bean id="ehcacheCustom"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache-custom.xml"/>
+	</bean>
+
+	<bean id="cacheManager1" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager">
+			<ref bean="ehcacheGeneric" />
+		</property>
+	</bean>
+	
+	<bean id="cacheManager2" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager">
+			<ref bean="ehcacheCustom" />
+		</property>
+	</bean>
+
+	<cache:annotation-driven cache-manager="cacheManager" />
+	
+</beans>

@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head></head>
+	<body>
+		<header id="header" th:fragment="header">
+			<div class="headerbar">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="headerbar-left">
+					<ul class="header-nav header-nav-options">
+						<li class="header-nav-brand" th:include="header-nav/header-nav-brand :: header-nav-brand"></li>
+						<li th:include="header-nav/header-nav-brand :: menubar-toggle"></li>
+					</ul>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="headerbar-right">
+					<ul class="header-nav header-nav-options">
+						<li th:include="header-nav/header-search :: header-search"></li>
+						<li class="dropdown hidden-xs" th:include="header-nav/server-load :: server-load"></li>
+						<!--end .dropdown -->
+					</ul><!--end .header-nav-options -->
+					<ul class="header-nav header-nav-profile">
+						<li class="dropdown" th:include="header-nav/header-nav-profile :: header-nav-profile" ></li><!--end .dropdown -->
+					</ul><!--end .header-nav-profile -->
+					<ul class="header-nav header-nav-toggle">
+						<li th:include="header-nav/header-toggle :: header-toggle"></li>
+					</ul><!--end .header-nav-toggle -->
+				</div><!--end #header-navbar-collapse -->
+			</div>
+		</header>
+		
+		
+	</body>
+</html>

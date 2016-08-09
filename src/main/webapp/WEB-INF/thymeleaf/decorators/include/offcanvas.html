@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head></head>
+<body>
+	<div th:fragment="offcanvas">
+		<!-- BEGIN OFFCANVAS SEARCH -->
+		<div id="offcanvas-search" class="offcanvas-pane width-8" th:include="offcanvas/offcanvas-search :: offcanvas-search"></div>
+
+		<!-- BEGIN OFFCANVAS CHAT -->
+		<div id="offcanvas-chat" class="offcanvas-pane style-default-light width-12" th:include="offcanvas/offcanvas-chat :: offcanvas-chat"></div>
+
+
+
+
+
+	</div>
+</body>
+</html>

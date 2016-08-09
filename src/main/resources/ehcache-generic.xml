@@ -1,0 +1,16 @@
+<ehcache name="ehcache-generic">
+	<diskStore path="java.io.tmpdir" />
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="false"
+		memoryStoreEvictionPolicy="LRU" statistics="true">
+	</defaultCache>
+
+	<cache name="User" maxEntriesLocalHeap="100000" />
+	<cache name="User.all" maxEntriesLocalHeap="100000" />
+	<cache name="User.count" maxEntriesLocalHeap="100000" />
+
+	<cache name="Profile" maxEntriesLocalHeap="100000" />
+	<cache name="Profile.all" maxEntriesLocalHeap="100000" />
+	<cache name="Profile.count" maxEntriesLocalHeap="100000" />
+
+</ehcache>

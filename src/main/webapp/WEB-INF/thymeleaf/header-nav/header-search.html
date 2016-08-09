@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head></head>
+<body>
+	<li th:fragment="header-search">
+		<!-- Search form -->
+		<form class="navbar-search" role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" name="headerSearch"
+					placeholder="Enter your keyword" />
+			</div>
+			<button type="submit" class="btn btn-icon-toggle ink-reaction">
+				<i class="fa fa-search"></i>
+			</button>
+		</form>
+	</li>
+</body>
+</html>

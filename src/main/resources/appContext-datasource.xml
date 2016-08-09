@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+		<property name="targetDataSource">
+			<bean class="org.apache.commons.dbcp.BasicDataSource"
+				destroy-method="close">
+				<property name="username" value="${jdbc.user}" />
+				<property name="password" value="${jdbc.password}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="driverClassName" value="${jdbc.driver}" />
+				<property name="initialSize" value="1" />
+				<property name="maxActive" value="50" />
+				<property name="maxWait" value="5000" />
+				<property name="testOnBorrow" value="true" />
+				<property name="validationQuery" value="select version()" />
+				<property name="poolPreparedStatements" value="true" />
+				<property name="minIdle" value="1" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="dataSourceActiviti" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+		<property name="targetDataSource">
+			<bean class="org.apache.commons.dbcp.BasicDataSource"
+				destroy-method="close">
+				<property name="username" value="${jdbc.user}" />
+				<property name="password" value="${jdbc.password}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="driverClassName" value="${jdbc.driver}" />
+				<property name="initialSize" value="1" />
+				<property name="maxActive" value="50" />
+				<property name="maxWait" value="5000" />
+				<property name="testOnBorrow" value="true" />
+				<property name="validationQuery" value="select version()" />
+				<property name="poolPreparedStatements" value="true" />
+				<property name="minIdle" value="1" />
+			</bean>
+		</property>
+	</bean>
+	
+</beans>

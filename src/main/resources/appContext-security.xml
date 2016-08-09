@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
+	
+	<security:http pattern="/css/**" security="none" />
+	<security:http pattern="/js/**" security="none" />
+	<security:http pattern="/img/**" security="none" />
+	<security:http pattern="/sound/**" security="none" />
+	
+	<security:http pattern="/javascript/**" security="none" />
+	<security:http pattern="/webjars/**" security="none" />
+	
+	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		<constructor-arg value="256" />
+	</bean>
+	
+	<bean id="ajaxTimeoutRedirectFilter" class="com.eramaya.eravett.web.filter.AjaxTimeoutRedirectFilter">
+	    <property name="customSessionExpiredErrorCode" value="901" />
+	</bean>
+	
+	<security:http auto-config="true" use-expressions="true" 
+		create-session="ifRequired" disable-url-rewriting="false">
+		<security:headers>
+			<security:frame-options policy="SAMEORIGIN" />
+		</security:headers>
+		<security:custom-filter ref="ajaxTimeoutRedirectFilter" after="EXCEPTION_TRANSLATION_FILTER" />
+		<security:intercept-url pattern="/module/todo/add" access="permitAll" />
+		<security:intercept-url pattern="/error/**" access="permitAll" />
+		<security:intercept-url pattern="/login**" access="permitAll" />
+		<security:intercept-url pattern="/list/**" access="permitAll"/>
+		<security:intercept-url pattern="/ws/**" access="permitAll"/>
+<!-- 		<security:intercept-url pattern="/**" access="permitAll"/> -->
+		<security:intercept-url pattern="/**" access="isFullyAuthenticated() or isRememberMe()" />
+		<security:form-login login-page="/login" default-target-url="/"
+                             username-parameter="j_username"
+                             password-parameter="j_password"
+                             login-processing-url="/j_spring_security_check"
+                             authentication-failure-handler-ref="customAuthenticationFailureHandler"
+                             authentication-success-handler-ref="authenticationSuccessHandler" />
+        <security:logout logout-url="/logout" invalidate-session="true" success-handler-ref="logoutSuccessHandler"/>
+        <security:csrf disabled="true"/>
+		<!--security:remember-me services-ref="rememberMeServices" authentication-success-handler-ref="authenticationSuccessHandler"/-->
+		<security:access-denied-handler error-page="/error/403" />
+	</security:http>
+	
+	<security:websocket-message-broker id="securityWebsocketMessageBroker">
+		<security:intercept-message type="CONNECT" access="permitAll"/>
+		<security:intercept-message type="UNSUBSCRIBE" access="permitAll"/>
+		<security:intercept-message type="DISCONNECT" access="permitAll"/>
+		<security:intercept-message pattern="/app/**" access="permitAll" />
+		<security:intercept-message pattern="/topic/**" access="authenticated" />
+		<security:intercept-message pattern="/queue/**" access="permitAll" />
+		<security:intercept-message pattern="/patient/**" access="authenticated" />
+		<security:intercept-message pattern="/campus/**" access="authenticated" />
+		<security:intercept-message pattern="/user/**" access="authenticated" />
+		<security:intercept-message pattern="/public/**" access="permitAll" />
+		<security:intercept-message type="MESSAGE" access="denyAll" />
+	    <security:intercept-message type="SUBSCRIBE" access="denyAll" />
+	    <security:intercept-message pattern="/**" access="denyAll" />
+	</security:websocket-message-broker>
+	
+	<bean id="customAuthenticationFailureHandler" class="com.eramaya.eravett.security.service.CustomAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/login"></property>
+		<property name="exceptionMappings">
+			<map>
+				<entry key="org.springframework.security.authentication.BadCredentialsException" value="/login?errorMessage=bad.credentials" />
+				<entry key="org.springframework.security.authentication.DisabledException" value="/login?errorMessage=disabled.user" />
+				<entry key="org.springframework.security.authentication.AuthenticationCredentialsNotFoundException" value="/login?errorMessage=not.authorize" />
+				<entry key="org.springframework.security.authentication.LockedException" value="/login?errorMessage=not.authorize"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="authenticateUserService" class="com.eramaya.eravett.security.service.UserDetailsServiceImpl">
+		<property name="superAdminUser" ref="superAdminUser"></property>
+	</bean>
+	
+	<bean id="superAdminUser" class="com.eramaya.eravett.security.service.SuperAdminUser">
+	 	<property name="name" value="Eramaya IT Administrator" />
+		<property name="username" value="admin" />
+		<property name="password" value="cfd1a8804dad604de603d59d184b753e9893d317e8a911aa00e726122f213dbb" />
+		<property name="campusCode" value="10" />
+		<property name="campusDisplay" value="Cyberjaya" />
+		<property name="deptId" value="1" />
+		<property name="deptDisplay" value="IT" />
+		<property name="authorities">
+			<util:list value-type="java.lang.String">
+				<value>admin</value>
+			</util:list>
+		</property>
+	</bean>
+	
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider user-service-ref="authenticateUserService">
+			<security:password-encoder ref="passwordEncoder">
+				<security:salt-source system-wide="${security.salt}" />
+			</security:password-encoder>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<bean id="authenticationSuccessHandler" class="com.eramaya.eravett.security.service.CustomAuthenticationSuccessHandler">
+	 	<property name="defaultTargetUrl" value="/" />
+	 </bean>
+	 
+	 <bean id="logoutSuccessHandler" class="com.eramaya.eravett.security.service.CustomLogoutHandler">
+	 	<property name="defaultTargetUrl" value="/" />
+	 </bean>
+	 
+	 <context:component-scan base-package="com.eramaya.eravett.security" />
+	 
+</beans>

@@ -1,0 +1,13 @@
+<ehcache name="ehcache-custom">
+	<diskStore path="java.io.tmpdir" />
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="false"
+		memoryStoreEvictionPolicy="LRU" statistics="true">
+	</defaultCache>
+	<cache name="service.menu.master.menu" maxEntriesLocalHeap="10" timeToIdleSeconds="600" timeToLiveSeconds="600"></cache>
+	<cache name="service.menu.task-by-menu" maxEntriesLocalHeap="100" timeToIdleSeconds="600" timeToLiveSeconds="600"></cache>
+	<cache name="service.task.list" maxEntriesLocalHeap="100" timeToIdleSeconds="600" timeToLiveSeconds="600"></cache>
+
+	<cache name="user-group" maxEntriesLocalHeap="100000" />
+	
+</ehcache>
