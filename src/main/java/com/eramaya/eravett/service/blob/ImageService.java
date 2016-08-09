@@ -21,7 +21,7 @@ public class ImageService {
 			int type = originalImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 			BufferedImage resizedImage=resizeImage(originalImage,type,width,height);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write( resizedImage, "jpg", baos );
+			ImageIO.write( resizedImage, "png", baos );
 			baos.flush();
 			byte[] imageInByte = baos.toByteArray();
 			baos.close();

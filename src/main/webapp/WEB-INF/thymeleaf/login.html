@@ -111,6 +111,7 @@
 
 
 	<!-- BEGIN FORM MODAL MARKUP -->
+	
 	<div class="modal fade" id="formModal" tabindex="-1" role="dialog"
 		aria-labelledby="formModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
@@ -180,6 +181,7 @@
 								</div>
 								<!--end #tab1 -->
 								<div class="tab-pane" id="tab2">
+									<br /> <br />
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="form-group floating-label">
@@ -362,6 +364,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
+	<div th:include="include/dropzone/modal :: modal"></div>
 
 
 
@@ -383,6 +386,14 @@
 	<script th:src="@{/js/core/source/AppVendor.js}"></script>
 	<script th:src="@{/js/core/demo/Demo.js}"></script>
 	<script th:src="@{/js/core/demo/DemoFormWizard.js}"></script>
+	<script th:src="@{/javascript/upload-photo.js}"></script>
+	<script>
+	$(document).ready(function(){
+		$("#dropzoneButton").click(function(){
+			$("#modalDropzone").modal("show");
+		});
+	});
+	</script>
 	<!-- END JAVASCRIPT -->
 
 </body>

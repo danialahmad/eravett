@@ -24,7 +24,7 @@ public class ProfilePhotoController {
 	public void view(@PathVariable("id") final Integer id,
                         final HttpServletResponse response){
 		
-		Resource resource = new ClassPathResource("img/avatar1.jpg");
+		Resource resource = new ClassPathResource("img/eramaya.png");
 		InputStream is;
 		try {
 			is = resource.getInputStream();
