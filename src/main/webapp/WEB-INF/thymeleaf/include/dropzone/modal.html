@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="decorators/bootstrap">
+<head>
+<title>Modal</title>
+</head>
+<body>
+	<div th:fragment="modal">
+		<div class="modal fade" id="modalDropzone" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form id="dropzone-form" class="dropzone" enctype="multipart/form-data">
+							<div class="dz-message">
+						        <h3>Drop files here or click to upload.</h3>
+							</div>
+							<div class="dropzone-previews text-center"></div>
+						</form>
+						<div class="row">
+							<div class="col-xs-12 text-center">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button type="button" class="btn btn-primary" id="upload-button" style="display:none;">Save</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
