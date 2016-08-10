@@ -10,7 +10,7 @@ $(document).ready(function() {
 		this.classList.remove('drag-over');
 	}
 	Dropzone.options.dropzoneForm = {
-		url : contextPath + "api/upload/photo/patient",
+		url : contextPath + "api/upload/photo/profile",
 		autoProcessQueue : false,
 		uploadMultiple : false,
 		maxFilesize : 2, // MB
@@ -30,7 +30,7 @@ $(document).ready(function() {
 		    	if(response.status=="success"){
 		    		var blobId = response.result;
 		    		$("#modalPhotoId").val(blobId);
-		    		$("#modalPatientPhoto").attr("src", contextPath + "api/patient/photo/" + blobId);
+		    		$("#modalPatientPhoto").attr("src", contextPath + "api/profile/photo/" + blobId);
 		    		$("#modalDropzone").modal("hide");
 		    	}
 		    });
