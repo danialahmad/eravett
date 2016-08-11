@@ -11,12 +11,17 @@
 
 	<table-filter match-schema="public" match-name=".*"
 		exclude="true" />
-	<table-filter match-schema="uam" match-name=".*"
-		exclude="false" />
+	<table-filter match-schema="uam" match-name=".*" exclude="false" />
 	<table-filter match-schema="eravett" match-name=".*"
 		exclude="false" />
-	
+
 	<table schema="eravett" name="profile">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+
+	<table schema="eravett" name="address">
 		<primary-key>
 			<generator class="identity" />
 		</primary-key>

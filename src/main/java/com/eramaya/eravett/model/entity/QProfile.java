@@ -28,15 +28,27 @@ public class QProfile extends EntityPathBase<Profile> {
 
     public final DatePath<java.util.Date> dob = createDate("dob", java.util.Date.class);
 
+    public final StringPath email = createString("email");
+
     public final QFileBlob fileBlob;
+
+    public final StringPath gender = createString("gender");
 
     public final StringPath idNumber = createString("idNumber");
 
     public final NumberPath<Integer> idType = createNumber("idType", Integer.class);
 
+    public final StringPath mobileNo = createString("mobileNo");
+
     public final StringPath name = createString("name");
 
+    public final StringPath phoneNo = createString("phoneNo");
+
+    public final StringPath pob = createString("pob");
+
     public final NumberPath<Integer> profileId = createNumber("profileId", Integer.class);
+
+    public final NumberPath<Integer> raceId = createNumber("raceId", Integer.class);
 
     public final QUser user;
 

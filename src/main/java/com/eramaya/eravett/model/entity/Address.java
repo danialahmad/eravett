@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -34,12 +36,7 @@ public class Address  implements java.io.Serializable {
     public Address() {
     }
 
-	
-    public Address(Integer id) {
-        this.id = id;
-    }
-    public Address(Integer id, String address1, String address2, String address3, String postcode, String city, Integer stateId, Integer countryId, Set<Profile> profilesForPermanentAddressId, Set<Profile> profilesForMailingAddressId) {
-       this.id = id;
+    public Address(String address1, String address2, String address3, String postcode, String city, Integer stateId, Integer countryId, Set<Profile> profilesForPermanentAddressId, Set<Profile> profilesForMailingAddressId) {
        this.address1 = address1;
        this.address2 = address2;
        this.address3 = address3;
@@ -51,7 +48,7 @@ public class Address  implements java.io.Serializable {
        this.profilesForMailingAddressId = profilesForMailingAddressId;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="id", unique=true, nullable=false)

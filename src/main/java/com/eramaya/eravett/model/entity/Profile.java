@@ -33,11 +33,17 @@ public class Profile  implements java.io.Serializable {
      private Date dob;
      private String idNumber;
      private Integer idType;
+     private String email;
+     private String mobileNo;
+     private String phoneNo;
+     private String gender;
+     private String pob;
+     private Integer raceId;
 
     public Profile() {
     }
 
-    public Profile(Address addressByPermanentAddressId, Address addressByMailingAddressId, FileBlob fileBlob, User user, String name, Date dob, String idNumber, Integer idType) {
+    public Profile(Address addressByPermanentAddressId, Address addressByMailingAddressId, FileBlob fileBlob, User user, String name, Date dob, String idNumber, Integer idType, String email, String mobileNo, String phoneNo, String gender, String pob, Integer raceId) {
        this.addressByPermanentAddressId = addressByPermanentAddressId;
        this.addressByMailingAddressId = addressByMailingAddressId;
        this.fileBlob = fileBlob;
@@ -46,6 +52,12 @@ public class Profile  implements java.io.Serializable {
        this.dob = dob;
        this.idNumber = idNumber;
        this.idType = idType;
+       this.email = email;
+       this.mobileNo = mobileNo;
+       this.phoneNo = phoneNo;
+       this.gender = gender;
+       this.pob = pob;
+       this.raceId = raceId;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -138,6 +150,66 @@ public class Profile  implements java.io.Serializable {
     
     public void setIdType(Integer idType) {
         this.idType = idType;
+    }
+
+    
+    @Column(name="email")
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
+    @Column(name="mobile_no", length=20)
+    public String getMobileNo() {
+        return this.mobileNo;
+    }
+    
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+
+    
+    @Column(name="phone_no", length=20)
+    public String getPhoneNo() {
+        return this.phoneNo;
+    }
+    
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    
+    @Column(name="gender", length=1)
+    public String getGender() {
+        return this.gender;
+    }
+    
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    
+    @Column(name="pob")
+    public String getPob() {
+        return this.pob;
+    }
+    
+    public void setPob(String pob) {
+        this.pob = pob;
+    }
+
+    
+    @Column(name="race_id")
+    public Integer getRaceId() {
+        return this.raceId;
+    }
+    
+    public void setRaceId(Integer raceId) {
+        this.raceId = raceId;
     }
 
 

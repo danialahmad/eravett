@@ -12,5 +12,9 @@
 	<cache name="Profile" maxEntriesLocalHeap="100000" />
 	<cache name="Profile.all" maxEntriesLocalHeap="100000" />
 	<cache name="Profile.count" maxEntriesLocalHeap="100000" />
+	
+	<cache name="Address" maxEntriesLocalHeap="100000" />
+	<cache name="Address.all" maxEntriesLocalHeap="100000" />
+	<cache name="Address.count" maxEntriesLocalHeap="100000" />
 
 </ehcache>
