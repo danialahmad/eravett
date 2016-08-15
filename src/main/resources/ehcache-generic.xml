@@ -16,5 +16,33 @@
 	<cache name="Address" maxEntriesLocalHeap="100000" />
 	<cache name="Address.all" maxEntriesLocalHeap="100000" />
 	<cache name="Address.count" maxEntriesLocalHeap="100000" />
+	
+	<cache name="FileBlob" maxEntriesLocalHeap="100000" />
+	<cache name="FileBlob.all" maxEntriesLocalHeap="100000" />
+	<cache name="FileBlob.count" maxEntriesLocalHeap="100000" />
 
+	<cache name="Agency" maxEntriesLocalHeap="100000" />
+	<cache name="Agency.all" maxEntriesLocalHeap="100000" />
+	<cache name="Agency.count" maxEntriesLocalHeap="100000" />
+	
+	<cache name="AssetOwner" maxEntriesLocalHeap="100000" />
+	<cache name="AssetOwner.all" maxEntriesLocalHeap="100000" />
+	<cache name="AssetOwner.count" maxEntriesLocalHeap="100000" />
+	
+	<cache name="Vetting" maxEntriesLocalHeap="100000" />
+	<cache name="Vetting.all" maxEntriesLocalHeap="100000" />
+	<cache name="Vetting.count" maxEntriesLocalHeap="100000" />
+	
+	<cache name="VettingOrder" maxEntriesLocalHeap="100000" />
+	<cache name="VettingOrder.all" maxEntriesLocalHeap="100000" />
+	<cache name="VettingOrder.count" maxEntriesLocalHeap="100000" />
+	
+	<cache name="VettingProfile" maxEntriesLocalHeap="100000" />
+	<cache name="VettingProfile.all" maxEntriesLocalHeap="100000" />
+	<cache name="VettingProfile.count" maxEntriesLocalHeap="100000" />
+	
+	<cache name="VettingStatus" maxEntriesLocalHeap="100000" />
+	<cache name="VettingStatus.all" maxEntriesLocalHeap="100000" />
+	<cache name="VettingStatus.count" maxEntriesLocalHeap="100000" />
+	
 </ehcache>

@@ -21,12 +21,11 @@ public class UploadProfilePhotoController {
 	private UploadProfilePhotoService uploadProfilePhotoService;
 	
 	@RequestMapping(value="/api/upload/photo/profile", method=RequestMethod.POST)
-	public @ResponseBody JsonResponse uploadPhotoPatient(@RequestParam("file") MultipartFile file, 
-			@RequestParam("profileId") Integer profileId,
+	public @ResponseBody JsonResponse uploadPhotoPatient(@RequestParam("file") MultipartFile file,
 			HttpServletResponse response) throws IOException {
 		JsonResponse jr = new JsonResponse();
 		try {
-			Integer fileId = uploadProfilePhotoService.upload(file, profileId);
+			Integer fileId = uploadProfilePhotoService.upload(file);
 			jr.setStatus("success");
 			jr.setResult(fileId);
 		} catch (RuntimeException e){

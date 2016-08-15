@@ -15,6 +15,7 @@ $(document).ready(function() {
 		uploadMultiple : false,
 		maxFilesize : 2, // MB
 		previewsContainer : ".dropzone-previews",
+		//previewsContainer : "#imgprev",
 		maxFiles : 1,
 		acceptedFiles: 'image/*',
 		addRemoveLinks : true,
@@ -29,13 +30,16 @@ $(document).ready(function() {
 		    	console.log(response);
 		    	if(response.status=="success"){
 		    		var blobId = response.result;
-		    		$("#modalPhotoId").val(blobId);
-		    		$("#modalPatientPhoto").attr("src", contextPath + "api/profile/photo/" + blobId);
+		    		$("#photoId").val(blobId);
+		    		$("#profileRegistrationPatientPhoto").attr("src", contextPath + "api/profile/photo/" + blobId);
 		    		$("#modalDropzone").modal("hide");
 		    	}
 		    });
 			var myDropzone = this;
 			$('#upload-button').on("click", function(e) {
+				var d=$(".dz-image > img").attr('src');
+				
+				//$("#profileRegistrationPatientPhoto").attr("src", d);
 				myDropzone.processQueue();
 			});
 		}

@@ -52,6 +52,8 @@ public class QProfile extends EntityPathBase<Profile> {
 
     public final QUser user;
 
+    public final SetPath<VettingProfile, QVettingProfile> vettingProfiles = this.<VettingProfile, QVettingProfile>createSet("vettingProfiles", VettingProfile.class, QVettingProfile.class, PathInits.DIRECT2);
+
     public QProfile(String variable) {
         this(Profile.class, forVariable(variable), INITS);
     }

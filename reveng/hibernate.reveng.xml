@@ -27,4 +27,46 @@
 		</primary-key>
 	</table>
 
+	<table schema="eravett" name="file_blob">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="eravett" name="agency">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+
+	<table schema="eravett" name="asset_owner">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="eravett" name="vetting">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="eravett" name="vetting_order">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="eravett" name="vetting_profile">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="eravett" name="vetting_status">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+
 </hibernate-reverse-engineering>

@@ -22,18 +22,18 @@ public class UploadProfilePhotoService {
 	private ProfileGenericService profileGenericService;
 	
 	@Transactional
-	public Integer upload(MultipartFile file, Integer profileId) throws IOException {
+	public Integer upload(MultipartFile file) throws IOException {
 		UploadFileForm f = new UploadFileForm();
 		f.setContent(file.getBytes());
 		f.setDocSize(Integer.valueOf((int) file.getSize()));
-		f.setFileName(file.getName());
+		f.setFileName(file.getOriginalFilename());
 		f.setMimeType(file.getContentType());
 		Integer fileId = uploadBlobService.saveBlob(f);
-		FileBlob fb = new FileBlob();
-		fb.setId(fileId);
-		Profile p = profileGenericService.findOne(profileId);
-		p.setFileBlob(fb);
-		profileGenericService.save(p);
+		//FileBlob fb = new FileBlob();
+		//fb.setId(fileId);
+		//Profile p = profileGenericService.findOne(profileId);
+		//p.setFileBlob(fb);
+		//profileGenericService.save(p);
 		return fileId;
 	}
 }

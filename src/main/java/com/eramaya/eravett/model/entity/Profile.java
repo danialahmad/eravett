@@ -2,6 +2,8 @@ package com.eramaya.eravett.model.entity;
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,11 +42,12 @@ public class Profile  implements java.io.Serializable {
      private String gender;
      private String pob;
      private Integer raceId;
+     private Set<VettingProfile> vettingProfiles = new HashSet<VettingProfile>(0);
 
     public Profile() {
     }
 
-    public Profile(Address addressByPermanentAddressId, Address addressByMailingAddressId, FileBlob fileBlob, User user, String name, Date dob, String idNumber, Integer idType, String email, String mobileNo, String phoneNo, String gender, String pob, Integer raceId) {
+    public Profile(Address addressByPermanentAddressId, Address addressByMailingAddressId, FileBlob fileBlob, User user, String name, Date dob, String idNumber, Integer idType, String email, String mobileNo, String phoneNo, String gender, String pob, Integer raceId, Set<VettingProfile> vettingProfiles) {
        this.addressByPermanentAddressId = addressByPermanentAddressId;
        this.addressByMailingAddressId = addressByMailingAddressId;
        this.fileBlob = fileBlob;
@@ -58,6 +62,7 @@ public class Profile  implements java.io.Serializable {
        this.gender = gender;
        this.pob = pob;
        this.raceId = raceId;
+       this.vettingProfiles = vettingProfiles;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -210,6 +215,15 @@ public class Profile  implements java.io.Serializable {
     
     public void setRaceId(Integer raceId) {
         this.raceId = raceId;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="profile")
+    public Set<VettingProfile> getVettingProfiles() {
+        return this.vettingProfiles;
+    }
+    
+    public void setVettingProfiles(Set<VettingProfile> vettingProfiles) {
+        this.vettingProfiles = vettingProfiles;
     }
 
 

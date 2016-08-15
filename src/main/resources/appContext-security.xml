@@ -36,6 +36,9 @@
 		<security:intercept-url pattern="/module/todo/add" access="permitAll" />
 		<security:intercept-url pattern="/error/**" access="permitAll" />
 		<security:intercept-url pattern="/login**" access="permitAll" />
+		<security:intercept-url pattern="/module/registration/**" access="permitAll" />
+		<security:intercept-url pattern="/api/upload/photo/**" access="permitAll" />
+		<security:intercept-url pattern="/api/profile/photo/**" access="permitAll" />
 		<security:intercept-url pattern="/list/**" access="permitAll"/>
 		<security:intercept-url pattern="/ws/**" access="permitAll"/>
 <!-- 		<security:intercept-url pattern="/**" access="permitAll"/> -->

@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -37,12 +39,7 @@ public class FileBlob  implements java.io.Serializable {
     public FileBlob() {
     }
 
-	
-    public FileBlob(Integer id) {
-        this.id = id;
-    }
-    public FileBlob(Integer id, String mimeType, Integer docSize, byte[] blobContent, String fileName, String createdBy, Date createdDate, String updatedBy, Date updatedDate, Set<Profile> profiles) {
-       this.id = id;
+    public FileBlob(String mimeType, Integer docSize, byte[] blobContent, String fileName, String createdBy, Date createdDate, String updatedBy, Date updatedDate, Set<Profile> profiles) {
        this.mimeType = mimeType;
        this.docSize = docSize;
        this.blobContent = blobContent;
@@ -54,7 +51,7 @@ public class FileBlob  implements java.io.Serializable {
        this.profiles = profiles;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="id", unique=true, nullable=false)
