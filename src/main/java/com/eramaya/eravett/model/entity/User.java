@@ -8,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,6 +30,7 @@ public class User  implements java.io.Serializable {
      private String password;
      private Date registrationDate;
      private String activeFlag;
+     private Set<Role> roles = new HashSet<Role>(0);
      private Set<Profile> profiles = new HashSet<Profile>(0);
 
     public User() {
@@ -37,11 +41,12 @@ public class User  implements java.io.Serializable {
         this.username = username;
         this.password = password;
     }
-    public User(String username, String password, Date registrationDate, String activeFlag, Set<Profile> profiles) {
+    public User(String username, String password, Date registrationDate, String activeFlag, Set<Role> roles, Set<Profile> profiles) {
        this.username = username;
        this.password = password;
        this.registrationDate = registrationDate;
        this.activeFlag = activeFlag;
+       this.roles = roles;
        this.profiles = profiles;
     }
    
@@ -85,6 +90,18 @@ public class User  implements java.io.Serializable {
     
     public void setActiveFlag(String activeFlag) {
         this.activeFlag = activeFlag;
+    }
+
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="user_role", schema="uam", joinColumns = { 
+        @JoinColumn(name="username", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="role_id", nullable=false, updatable=false) })
+    public Set<Role> getRoles() {
+        return this.roles;
+    }
+    
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="user")

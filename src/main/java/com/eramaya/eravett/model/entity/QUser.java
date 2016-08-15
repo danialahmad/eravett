@@ -28,6 +28,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final DateTimePath<java.util.Date> registrationDate = createDateTime("registrationDate", java.util.Date.class);
 
+    public final SetPath<Role, QRole> roles = this.<Role, QRole>createSet("roles", Role.class, QRole.class, PathInits.DIRECT2);
+
     public final StringPath username = createString("username");
 
     public QUser(String variable) {

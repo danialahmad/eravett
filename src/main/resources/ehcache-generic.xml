@@ -8,6 +8,10 @@
 	<cache name="User" maxEntriesLocalHeap="100000" />
 	<cache name="User.all" maxEntriesLocalHeap="100000" />
 	<cache name="User.count" maxEntriesLocalHeap="100000" />
+	
+	<cache name="Role" maxEntriesLocalHeap="100000" />
+	<cache name="Role.all" maxEntriesLocalHeap="100000" />
+	<cache name="Role.count" maxEntriesLocalHeap="100000" />
 
 	<cache name="Profile" maxEntriesLocalHeap="100000" />
 	<cache name="Profile.all" maxEntriesLocalHeap="100000" />
