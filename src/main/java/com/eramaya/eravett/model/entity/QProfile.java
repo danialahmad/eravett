@@ -46,6 +46,8 @@ public class QProfile extends EntityPathBase<Profile> {
 
     public final StringPath pob = createString("pob");
 
+    public final SetPath<ProfileEmployer, QProfileEmployer> profileEmployers = this.<ProfileEmployer, QProfileEmployer>createSet("profileEmployers", ProfileEmployer.class, QProfileEmployer.class, PathInits.DIRECT2);
+
     public final NumberPath<Integer> profileId = createNumber("profileId", Integer.class);
 
     public final NumberPath<Integer> raceId = createNumber("raceId", Integer.class);

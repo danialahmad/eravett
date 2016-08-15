@@ -42,12 +42,13 @@ public class Profile  implements java.io.Serializable {
      private String gender;
      private String pob;
      private Integer raceId;
+     private Set<ProfileEmployer> profileEmployers = new HashSet<ProfileEmployer>(0);
      private Set<VettingProfile> vettingProfiles = new HashSet<VettingProfile>(0);
 
     public Profile() {
     }
 
-    public Profile(Address addressByPermanentAddressId, Address addressByMailingAddressId, FileBlob fileBlob, User user, String name, Date dob, String idNumber, Integer idType, String email, String mobileNo, String phoneNo, String gender, String pob, Integer raceId, Set<VettingProfile> vettingProfiles) {
+    public Profile(Address addressByPermanentAddressId, Address addressByMailingAddressId, FileBlob fileBlob, User user, String name, Date dob, String idNumber, Integer idType, String email, String mobileNo, String phoneNo, String gender, String pob, Integer raceId, Set<ProfileEmployer> profileEmployers, Set<VettingProfile> vettingProfiles) {
        this.addressByPermanentAddressId = addressByPermanentAddressId;
        this.addressByMailingAddressId = addressByMailingAddressId;
        this.fileBlob = fileBlob;
@@ -62,6 +63,7 @@ public class Profile  implements java.io.Serializable {
        this.gender = gender;
        this.pob = pob;
        this.raceId = raceId;
+       this.profileEmployers = profileEmployers;
        this.vettingProfiles = vettingProfiles;
     }
    
@@ -215,6 +217,15 @@ public class Profile  implements java.io.Serializable {
     
     public void setRaceId(Integer raceId) {
         this.raceId = raceId;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="profile")
+    public Set<ProfileEmployer> getProfileEmployers() {
+        return this.profileEmployers;
+    }
+    
+    public void setProfileEmployers(Set<ProfileEmployer> profileEmployers) {
+        this.profileEmployers = profileEmployers;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="profile")

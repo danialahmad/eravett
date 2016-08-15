@@ -17,6 +17,14 @@
 	<cache name="Profile.all" maxEntriesLocalHeap="100000" />
 	<cache name="Profile.count" maxEntriesLocalHeap="100000" />
 	
+	<cache name="Employer" maxEntriesLocalHeap="100000" />
+	<cache name="Employer.all" maxEntriesLocalHeap="100000" />
+	<cache name="Employer.count" maxEntriesLocalHeap="100000" />
+	
+	<cache name="ProfileEmployer" maxEntriesLocalHeap="100000" />
+	<cache name="ProfileEmployer.all" maxEntriesLocalHeap="100000" />
+	<cache name="ProfileEmployer.count" maxEntriesLocalHeap="100000" />
+	
 	<cache name="Address" maxEntriesLocalHeap="100000" />
 	<cache name="Address.all" maxEntriesLocalHeap="100000" />
 	<cache name="Address.count" maxEntriesLocalHeap="100000" />

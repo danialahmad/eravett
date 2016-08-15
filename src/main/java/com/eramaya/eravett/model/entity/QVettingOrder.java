@@ -24,7 +24,7 @@ public class QVettingOrder extends EntityPathBase<VettingOrder> {
 
     public final QAssetOwner assetOwner;
 
-    public final NumberPath<Integer> employerId = createNumber("employerId", Integer.class);
+    public final QEmployer employer;
 
     public final StringPath poNo = createString("poNo");
 
@@ -53,6 +53,7 @@ public class QVettingOrder extends EntityPathBase<VettingOrder> {
     public QVettingOrder(Class<? extends VettingOrder> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.assetOwner = inits.isInitialized("assetOwner") ? new QAssetOwner(forProperty("assetOwner")) : null;
+        this.employer = inits.isInitialized("employer") ? new QEmployer(forProperty("employer")) : null;
     }
 
 }

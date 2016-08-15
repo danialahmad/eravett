@@ -26,7 +26,7 @@ public class VettingOrder  implements java.io.Serializable {
 
      private Integer vettingOrderId;
      private AssetOwner assetOwner;
-     private Integer employerId;
+     private Employer employer;
      private String poNo;
      private String purpose;
      private Set<Vetting> vettings = new HashSet<Vetting>(0);
@@ -34,9 +34,9 @@ public class VettingOrder  implements java.io.Serializable {
     public VettingOrder() {
     }
 
-    public VettingOrder(AssetOwner assetOwner, Integer employerId, String poNo, String purpose, Set<Vetting> vettings) {
+    public VettingOrder(AssetOwner assetOwner, Employer employer, String poNo, String purpose, Set<Vetting> vettings) {
        this.assetOwner = assetOwner;
-       this.employerId = employerId;
+       this.employer = employer;
        this.poNo = poNo;
        this.purpose = purpose;
        this.vettings = vettings;
@@ -64,14 +64,14 @@ public class VettingOrder  implements java.io.Serializable {
         this.assetOwner = assetOwner;
     }
 
-    
-    @Column(name="employer_id")
-    public Integer getEmployerId() {
-        return this.employerId;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="employer_id")
+    public Employer getEmployer() {
+        return this.employer;
     }
     
-    public void setEmployerId(Integer employerId) {
-        this.employerId = employerId;
+    public void setEmployer(Employer employer) {
+        this.employer = employer;
     }
 
     
